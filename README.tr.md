@@ -104,3 +104,4 @@ tools/make_icon.py           Logo ve ikon üreticisi
 tools/make_portable.py       Taşınabilir (portable) ZIP paketleyici
 tests/                       Otomatik motor, dönüştürücü ve arayüz testleri
 ```
+ 
