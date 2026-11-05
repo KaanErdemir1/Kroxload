@@ -43,7 +43,6 @@ python tests/test_converter.py
 python tests/test_ui.py
 ```
 
-Ayrıntılı test sonuçları için `TEST_RAPORU.md` dosyasına bakın.
 
 ## Proje Yapısı
 
