@@ -1,0 +1,24 @@
+# Derleme çıktıları
+build/
+dist/
+release/
+
+# Kurulum / paket dosyaları (GitHub'da dosya sınırı 100 MB; bunlar Releases'e yüklenir)
+*.exe
+*.zip
+
+# Yerel yedekler ve geçici dosyalar
+_yedek/
+assets/_onizleme.png
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Büyük ikili bağımlılıklar (FFmpeg)
+deps/ffmpeg/
+
+# Yerel veriler
+*.log
