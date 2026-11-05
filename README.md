@@ -1,41 +1,71 @@
 # Kroxload
 
-Modern, hızlı ve profesyonel masaüstü medya indirici ve dönüştürücü (**KXR YAZILIM**).
-YouTube ve `yt-dlp` tarafından desteklenen yüzlerce platformdan video/ses indirir; yerleşik **FFmpeg & FFprobe** motoruyla yerel ses ve video dosyalarını dönüştürür.
+[🇬🇧 English](README.md) | [🇹🇷 Türkçe](README.tr.md)
 
-## Temel Özellikler (v1.1.0)
+A modern, fast, and professional desktop media downloader and converter developed by **KXR YAZILIM**.
 
-- **Ana Sayfa (Medya İndirici):**
-  - Çoklu URL kuyruğu, otomatik pano algılama ve canlı medya önizlemesi (küçük resim, kanal, süre).
-  - Format ve kalite seçimi (`MP3`, `WAV`, `MP4`, `M4A`), oynatma listesi desteği.
-  - Her indirme için canlı hız, boyut, kalan süre (ETA), **Duraklat / Devam Et**, **İptal**, **Yeniden Dene**, **Dosyayı Aç** ve **Klasörde Göster** aksiyonları.
-- **Dönüştürücü (Yerel FFmpeg & FFprobe):**
-  - **Ses → Ses:** `MP3`, `WAV`, `FLAC`, `AAC`, `OGG`, `M4A`
+Download videos and audio from YouTube and hundreds of platforms supported by `yt-dlp`. Convert local audio and video files with the built-in **FFmpeg & FFprobe** engine.
+
+## Key Features (v1.1.0)
+
+- **Home (Media Downloader):**
+  - Multiple URL queue, automatic clipboard detection, and live media previews (thumbnail, channel, duration).
+  - Format and quality selection (`MP3`, `WAV`, `MP4`, `M4A`) with playlist support.
+  - Live download speed, file size, and estimated time remaining (ETA) for each download.
+  - **Pause / Resume**, **Cancel**, **Retry**, **Open File**, and **Show in Folder** actions.
+
+- **Converter (Local FFmpeg & FFprobe):**
+  - **Audio → Audio:** `MP3`, `WAV`, `FLAC`, `AAC`, `OGG`, `M4A`
   - **Video → Video:** `MP4`, `MKV`, `AVI`, `MOV`, `WEBM`
-  - **Video → Ses:** `MP3`, `WAV`, `FLAC`, `AAC`, `OGG`, `M4A`
-  - **Ses → Video:** Ses dosyası + kapak görseli (`PNG`/`JPG`/`WEBP`) birleştirerek video üretimi (`MP4`, `MKV`, `WEBM`, `MOV`, `AVI`)
-  - Sürükle-bırak (`tkinterdnd2`), çoklu dosya kuyruğu, FFprobe akış analizi, dinamik codec/bitrate/çözünürlük/örnekleme hızı seçimi ve canlı ilerleme yüzdesi.
-- **Geçmiş:**
-  - Kalıcı indirme ve dönüştürme geçmişi (`%APPDATA%\Kroxload\gecmis.json`), kategori filtreleri (`Tümü`, `İndirmeler`, `Dönüştürmeler`, `Başarısız`) ve anlık arama.
-- **Ayarlar & Tema:**
-  - **Koyu Tema (Dark Mode)** ve **Açık Tema (Light Mode)** — yumuşak renk geçiş animasyonlu.
-  - Tek tıkla `yt-dlp` motoru güncelleme, FFmpeg/FFprobe durum doğrulaması ve bildirim/animasyon tercihleri.
+  - **Video → Audio:** `MP3`, `WAV`, `FLAC`, `AAC`, `OGG`, `M4A`
+  - **Audio → Video:** Create videos by combining audio files with cover images (`PNG`/`JPG`/`WEBP`). Supported output formats: `MP4`, `MKV`, `WEBM`, `MOV`, `AVI`.
+  - Drag-and-drop support (`tkinterdnd2`), multiple file queue, FFprobe stream analysis, dynamic codec/bitrate/resolution/sample rate selection, and live progress tracking.
 
-## Derleme
+- **History:**
+  - Persistent download and conversion history (`%APPDATA%\Kroxload\gecmis.json`).
+  - Category filters (`All`, `Downloads`, `Conversions`, `Failed`) and instant search.
 
-Gereksinimler: Python 3.10+, `pip install customtkinter yt-dlp pillow tkinterdnd2 pyinstaller`, Inno Setup 6 ve `deps/ffmpeg/` (LGPL shared FFmpeg).
+- **Settings & Themes:**
+  - **Dark Mode** and **Light Mode** with smooth color transition animations.
+  - One-click `yt-dlp` engine updates.
+  - FFmpeg/FFprobe status verification.
+  - Notification and animation preferences.
+
+## Building
+
+**Requirements:**
+
+- Python 3.10+
+- `customtkinter`
+- `yt-dlp`
+- `pillow`
+- `tkinterdnd2`
+- `pyinstaller`
+- Inno Setup 6
+- `deps/ffmpeg/` (LGPL shared FFmpeg)
+
+Install the required Python packages:
+
+```bash
+pip install customtkinter yt-dlp pillow tkinterdnd2 pyinstaller
+```
+
+Build the project:
 
 ```bash
 build.bat
 ```
 
-Çıktılar:
+**Build outputs:**
+
 - `release/Kroxload_Setup.exe`
 - `release/Kroxload_Portable.zip`
 
-FFmpeg ve FFprobe uygulamayla birlikte paketlenir (`_internal/ffmpeg`); kullanıcının ayrıca Python veya FFmpeg kurmasına gerek yoktur.
+FFmpeg and FFprobe are bundled with the application (`_internal/ffmpeg`), so users do not need to install Python or FFmpeg separately.
 
-## Testler
+## Tests
+
+Run the tests using:
 
 ```bash
 python tests/test_engine.py
@@ -43,35 +73,38 @@ python tests/test_converter.py
 python tests/test_ui.py
 ```
 
+## Project Structure
 
-## Proje Yapısı
-
-```
-main.py                      Giriş noktası (exe bu dosyadan derlenir)
+```text
+main.py                      Entry point (the executable is built from this file)
 kroxload/
-  core/                      Arayüzden bağımsız çekirdek katman
-    engine.py                Olay tabanlı indirme motoru (duraklat/iptal/kuyruk)
-    converter.py             FFmpeg & FFprobe medya dönüştürme motoru
-    info.py                  Medya önizleme ve meta veri sorgulama
-    history.py               Kalıcı indirme ve dönüştürme geçmişi
-    settings.py              Kalıcı kullanıcı ayarları
-    errors.py                Türkçe kullanıcı dostu hata çevirici
-    logs.py                  Dönen log sistemi ve çökme yakalayıcı
-    updater.py               yt-dlp motor güncelleyici
-    formats.py               İndirme format ve kalite tanımları
-    paths.py                 Veri klasörü, kaynak yolları ve paketli FFmpeg çözümü
-    ytdlp.py                 Dinamik yt-dlp yükleyici
-  ui/                        Modern masaüstü arayüz katmanı
-    theme.py                 Koyu/Açık renk paletleri, tipografi ve tema animatörü
-    widgets.py               Özel bileşenler (Segment, Anahtar, Buton, Bildirim vb.)
-    desktop.py               Ana pencere, sol navigasyon ve sayfa geçiş yöneticisi
-    page_home.py             Ana Sayfa (İndirme merkezi)
-    page_converter.py        Dönüştürücü sayfası (Sürükle-bırak & FFmpeg kuyruğu)
-    page_history.py          Geçmiş sayfası
-    page_settings.py         Ayarlar ve Hakkında sayfası
-assets/                      Kroxload logo ve ikon dosyaları (png + ico)
-installer/Kroxload.iss       Inno Setup 6 kurulum betiği
-tools/make_icon.py           Logo ve ikon üreteci
-tools/make_portable.py       Taşınabilir (portable) ZIP paketleyici
-tests/                       Otomatik motor, dönüştürücü ve arayüz testleri
+  core/                      Core layer independent of the UI
+    engine.py                Event-driven download engine (pause/cancel/queue)
+    converter.py             FFmpeg & FFprobe media conversion engine
+    info.py                  Media preview and metadata retrieval
+    history.py               Persistent download and conversion history
+    settings.py              Persistent user settings
+    errors.py                Turkish user-friendly error translator
+    logs.py                  Rotating log system and crash handler
+    updater.py               yt-dlp engine updater
+    formats.py               Download format and quality definitions
+    paths.py                 Data directories, resource paths, and bundled FFmpeg resolution
+    ytdlp.py                 Dynamic yt-dlp loader
+  ui/                        Modern desktop interface layer
+    theme.py                 Dark/light color palettes, typography, and theme animator
+    widgets.py               Custom components (segments, switches, buttons, notifications, etc.)
+    desktop.py               Main window, sidebar navigation, and page transition manager
+    page_home.py             Home page (download center)
+    page_converter.py        Converter page (drag-and-drop & FFmpeg queue)
+    page_history.py          History page
+    page_settings.py         Settings and About page
+assets/                      Kroxload logos and icon files (PNG + ICO)
+installer/Kroxload.iss       Inno Setup 6 installer script
+tools/make_icon.py           Logo and icon generator
+tools/make_portable.py       Portable ZIP packager
+tests/                       Automated engine, converter, and UI tests
 ```
+
+---
+
+Developed by **KXR YAZILIM**.
