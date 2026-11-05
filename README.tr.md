@@ -105,3 +105,4 @@ tools/make_portable.py       Taşınabilir (portable) ZIP paketleyici
 tests/                       Otomatik motor, dönüştürücü ve arayüz testleri
 ```
  
+ 
